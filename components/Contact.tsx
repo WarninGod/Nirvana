@@ -33,7 +33,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
               <p>C-2 Block, Phase-IV, Kilokri</p>
               <p>Aya Nagar Extension</p>
               <p>New Delhi – 110047, India</p>
-              <p>theauthentictushar@gmail.com</p>
+              <p>gamerfreakin6@gmail.com</p>
             </div>
             <div className="flex flex-col gap-4">
               <span className="text-nirvana-light uppercase tracking-widest text-xs mb-2">Socials</span>

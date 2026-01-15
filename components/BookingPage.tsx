@@ -110,7 +110,7 @@ const BookingPage: React.FC<BookingPageProps> = ({ onBack }) => {
               <p>C-2 Block, Phase-IV, Kilokri</p>
               <p>Aya Nagar Extension</p>
               <p>New Delhi – 110047, India</p>
-              <p className="text-nirvana-gold font-serif text-lg mt-4">theauthentictushar@gmail.com</p>
+              <p className="text-nirvana-gold font-serif text-lg mt-4">gamerfreakin6@gmail.com</p>
             </motion.div>
           </div>
 

@@ -46,7 +46,7 @@ After setting up:
 1. Run `npm run dev`
 2. Open booking page
 3. Fill form and submit
-4. Check `theauthentictushar@gmail.com` for email
+4. Check `gamerfreakin6@gmail.com` for email
 
 ## 5. Pricing
 
