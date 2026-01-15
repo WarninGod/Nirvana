@@ -1,0 +1,21 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from '@dr.pogodin/react-helmet';
+import App from './App';
+import SEO from './components/SEO';
+import './index.css';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error("Could not find root element to mount to");
+}
+
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <HelmetProvider>
+      <SEO />
+      <App />
+    </HelmetProvider>
+  </React.StrictMode>
+);
