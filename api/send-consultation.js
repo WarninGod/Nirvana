@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     // Send email using Resend
     const emailResponse = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: 'theauthentictushar@gmail.com',
+      to: 'gamerfreakin6@gmail.com',
       replyTo: email,
       subject: `New ${type} Project Inquiry from ${name}`,
       html: `
