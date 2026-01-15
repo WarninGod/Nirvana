@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
         {/* Logo */}
         <a href="#" className="flex items-center gap-4 group">
           <motion.img 
-            src="/NI-removebg-preview.png" 
+            src="/nirvananobg.png" 
             alt="Nirvana Interiors" 
             className={cn(
               "transition-all duration-500 object-contain",
