@@ -12,4 +12,4 @@ Disallow: /admin/
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://nirvana-interiors.com/sitemap.xml
+Sitemap: https://nirvanainteriors.studio/sitemap.xml

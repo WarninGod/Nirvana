@@ -12,7 +12,7 @@ interface SEOProps {
 const SEO: React.FC<SEOProps> = ({
   title = 'Nirvana Interiors | Luxury Architectural Design Studio',
   description = 'Dark, moody architectural interior design studio serving global clients. Specializing in modular kitchens, TV panels, custom woodwork, and complete spatial transformations in Delhi, India.',
-  canonicalUrl = 'https://nirvana-interiors.com',
+  canonicalUrl = 'https://nirvanainteriors.studio',
   ogImage = 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop',
   ogType = 'website'
 }) => {
