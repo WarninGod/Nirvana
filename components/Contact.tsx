@@ -1,12 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram } from 'lucide-react';
 
 interface ContactProps {
   onOpenBooking: () => void;
 }
 
 const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
+  const phoneNumbers = [
+    { number: '+91 97114 36932', label: 'Rajiv Chauhan (CEO)', isPrimary: true },
+    { number: '+91 99997 47085', label: 'Team Lead', isPrimary: false },
+    { number: '+91 98737 76574', label: 'Project Coordinator', isPrimary: false },
+  ];
+
+  const email = 'gamerfreakin6@gmail.com';
+  const address = {
+    line1: 'Shop No. 436-A, Ground Floor',
+    line2: 'C-2 Block, Phase-IV, Kilokri',
+    line3: 'Aya Nagar Extension',
+    line4: 'New Delhi – 110047, India',
+  };
+
+  const contactItemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.1, duration: 0.6 },
+    }),
+  };
+
   return (
     <footer className="bg-[#050505] pt-32 pb-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -26,39 +49,125 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
             </motion.button>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 text-sm text-nirvana-muted">
-            <div className="flex flex-col gap-4">
-              <span className="text-nirvana-light uppercase tracking-widest text-xs mb-2">Studio</span>
-              <p>Shop No. 436-A, Ground Floor</p>
-              <p>C-2 Block, Phase-IV, Kilokri</p>
-              <p>Aya Nagar Extension</p>
-              <p>New Delhi – 110047, India</p>
-              <p>gamerfreakin6@gmail.com</p>
-            </div>
-            <div className="flex flex-col gap-4">
-              <span className="text-nirvana-light uppercase tracking-widest text-xs mb-2">Socials</span>
-              <div className="flex gap-4">
-                <a 
-                  href="https://www.instagram.com/nirvanainteriorstudio/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <Instagram 
-                    size={20} 
-                    className="hover:text-nirvana-gold cursor-pointer transition-colors outline-none focus:text-nirvana-gold" 
-                  />
-                </a>
+            {/* Phone Numbers Section */}
+            <div>
+              <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
+                <Phone size={16} className="text-nirvana-gold" />
+                Call Us
+              </h3>
+              <div className="space-y-3 pl-6">
+                {phoneNumbers.map((phone, index) => (
+                  <motion.a
+                    key={phone.number}
+                    href={`tel:${phone.number.replace(/\s/g, '')}`}
+                    custom={index}
+                    variants={contactItemVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="flex flex-col group"
+                  >
+                    <span className={`text-sm transition-colors ${
+                      phone.isPrimary 
+                        ? 'text-nirvana-gold font-semibold' 
+                        : 'text-nirvana-muted group-hover:text-nirvana-gold'
+                    }`}>
+                      {phone.number}
+                    </span>
+                    <span className="text-xs text-nirvana-muted/60">{phone.label}</span>
+                  </motion.a>
+                ))}
               </div>
+            </div>
+
+            {/* Email Section */}
+            <div>
+              <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
+                <Mail size={16} className="text-nirvana-gold" />
+                Email
+              </h3>
+              <motion.a
+                href={`mailto:${email}`}
+                variants={contactItemVariants}
+                custom={3}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-sm text-nirvana-muted hover:text-nirvana-gold transition-colors pl-6 block"
+              >
+                {email}
+              </motion.a>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-xs text-nirvana-muted/50 uppercase tracking-widest">
+        {/* Address & Social Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 py-12 border-y border-white/5">
+          {/* Address */}
+          <div>
+            <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
+              <MapPin size={16} className="text-nirvana-gold" />
+              Studio Location
+            </h3>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-sm text-nirvana-muted space-y-2 pl-6"
+            >
+              <p>{address.line1}</p>
+              <p>{address.line2}</p>
+              <p>{address.line3}</p>
+              <p>{address.line4}</p>
+            </motion.div>
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6">Follow Us</h3>
+            <div className="flex gap-6">
+              <motion.a
+                href="https://www.instagram.com/nirvanainteriorstudio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                whileHover={{ scale: 1.15, color: '#C9A24D' }}
+                transition={{ duration: 0.2 }}
+                className="text-nirvana-muted hover:text-nirvana-gold transition-colors"
+              >
+                <Instagram size={24} />
+              </motion.a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-nirvana-muted/50 uppercase tracking-widest">
           <p>© 2026 Nirvana Interiors. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a href="#privacy" onClick={(e) => { e.preventDefault(); alert('Privacy Policy:\n\nWe collect and protect your personal information in accordance with Indian data protection laws. Your contact details are used solely for project inquiries and will never be shared with third parties.'); }} className="hover:text-nirvana-muted cursor-pointer">Privacy</a>
             <a href="#terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service:\n\nBy contacting Nirvana Interiors, you agree to our service terms. All designs and concepts remain our intellectual property until full payment is received. Project timelines and costs will be provided in detailed quotations.'); }} className="hover:text-nirvana-muted cursor-pointer">Terms</a>
+                      <a
+                        href="#privacy"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          alert('Privacy Policy:\n\nWe collect and protect your personal information in accordance with Indian data protection laws. Your contact details are used solely for project inquiries and will never be shared with third parties.');
+                        }}
+                        className="hover:text-nirvana-muted cursor-pointer transition-colors"
+                      >
+                        Privacy
+                      </a>
+                      <a
+                        href="#terms"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          alert('Terms of Service:\n\nBy contacting Nirvana Interiors, you agree to our service terms. All designs and concepts remain our intellectual property until full payment is received. Project timelines and costs will be provided in detailed quotations.');
+                        }}
+                        className="hover:text-nirvana-muted cursor-pointer transition-colors"
+                      >
+                        Terms
+                      </a>
           </div>
         </div>
       </div>
