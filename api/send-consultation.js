@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     // Send email using Resend
     const emailResponse = await resend.emails.send({
       from: 'Nirvana Interiors <inquiries@nirvanainteriors.studio>',
-      to: 'gamerfreakin6@gmail.com',
+      to: 'rajiv830@gmail.com',
       replyTo: email,
       subject: `New ${type} Project Inquiry from ${name}`,
       html: `

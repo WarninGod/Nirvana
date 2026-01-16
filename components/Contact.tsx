@@ -13,7 +13,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
     { number: '+91 98737 76574', label: 'Project Coordinator', isPrimary: false },
   ];
 
-  const email = 'gamerfreakin6@gmail.com';
+  const email = 'rajiv830@gmail.com';
   const address = {
     line1: 'Shop No. 436-A, Ground Floor',
     line2: 'C-2 Block, Phase-IV, Kilokri',
