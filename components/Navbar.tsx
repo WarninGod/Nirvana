@@ -82,7 +82,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
               className="text-sm uppercase tracking-widest text-nirvana-muted hover:text-nirvana-gold transition-colors duration-300 relative group overflow-hidden"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-nirvana-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-nirvana-gold transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
             </a>
           ))}
           <motion.button
