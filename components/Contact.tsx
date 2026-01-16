@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
 
 interface ContactProps {
   onOpenBooking: () => void;
@@ -33,7 +33,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
   return (
     <footer className="bg-[#050505] pt-32 pb-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 mb-24 md:items-start">
           <div>
             <h2 className="font-serif text-5xl md:text-7xl text-nirvana-light mb-8 leading-none">
               Let's build <br />
@@ -49,13 +49,15 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
             </motion.button>
           </div>
 
+          {/* Contact Details Grid */}
+          <div className="grid grid-cols-1 gap-12 md:justify-self-end md:justify-items-center md:text-center max-w-sm w-full">
             {/* Phone Numbers Section */}
-            <div>
+            <div className="flex flex-col items-center">
               <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
                 <Phone size={16} className="text-nirvana-gold" />
                 Call Us
               </h3>
-              <div className="space-y-3 pl-6">
+              <div className="space-y-3 flex flex-col items-center">
                 {phoneNumbers.map((phone, index) => (
                   <motion.a
                     key={phone.number}
@@ -65,7 +67,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="flex flex-col group"
+                    className="flex flex-col group items-center"
                   >
                     <span className={`text-sm transition-colors ${
                       phone.isPrimary 
@@ -81,7 +83,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
             </div>
 
             {/* Email Section */}
-            <div>
+            <div className="flex flex-col items-center">
               <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
                 <Mail size={16} className="text-nirvana-gold" />
                 Email
@@ -93,7 +95,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="text-sm text-nirvana-muted hover:text-nirvana-gold transition-colors pl-6 block"
+                className="text-sm text-nirvana-muted hover:text-nirvana-gold transition-colors block text-center"
               >
                 {email}
               </motion.a>
@@ -124,9 +126,20 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
           </div>
 
           {/* Social Links */}
-          <div>
+          <div className="md:justify-self-end md:text-right">
             <h3 className="text-nirvana-light uppercase tracking-widest text-xs mb-6">Follow Us</h3>
-            <div className="flex gap-6">
+            <div className="flex gap-6 justify-start md:justify-end">
+              <motion.a
+                href="https://wa.me/919711436932?text=Hi%20Rajiv%2C%20I%27d%20like%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Rajiv (CEO)"
+                whileHover={{ scale: 1.15, color: '#C9A24D' }}
+                transition={{ duration: 0.2 }}
+                className="text-nirvana-muted hover:text-nirvana-gold transition-colors"
+              >
+                <MessageCircle size={24} />
+              </motion.a>
               <motion.a
                 href="https://www.instagram.com/nirvanainteriorstudio/"
                 target="_blank"
@@ -146,28 +159,26 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-nirvana-muted/50 uppercase tracking-widest">
           <p>© 2026 Nirvana Interiors. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#privacy" onClick={(e) => { e.preventDefault(); alert('Privacy Policy:\n\nWe collect and protect your personal information in accordance with Indian data protection laws. Your contact details are used solely for project inquiries and will never be shared with third parties.'); }} className="hover:text-nirvana-muted cursor-pointer">Privacy</a>
-            <a href="#terms" onClick={(e) => { e.preventDefault(); alert('Terms of Service:\n\nBy contacting Nirvana Interiors, you agree to our service terms. All designs and concepts remain our intellectual property until full payment is received. Project timelines and costs will be provided in detailed quotations.'); }} className="hover:text-nirvana-muted cursor-pointer">Terms</a>
-                      <a
-                        href="#privacy"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          alert('Privacy Policy:\n\nWe collect and protect your personal information in accordance with Indian data protection laws. Your contact details are used solely for project inquiries and will never be shared with third parties.');
-                        }}
-                        className="hover:text-nirvana-muted cursor-pointer transition-colors"
-                      >
-                        Privacy
-                      </a>
-                      <a
-                        href="#terms"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          alert('Terms of Service:\n\nBy contacting Nirvana Interiors, you agree to our service terms. All designs and concepts remain our intellectual property until full payment is received. Project timelines and costs will be provided in detailed quotations.');
-                        }}
-                        className="hover:text-nirvana-muted cursor-pointer transition-colors"
-                      >
-                        Terms
-                      </a>
+            <a
+              href="#privacy"
+              onClick={(e) => {
+                e.preventDefault();
+                alert('Privacy Policy:\n\nWe collect and protect your personal information in accordance with Indian data protection laws. Your contact details are used solely for project inquiries and will never be shared with third parties.');
+              }}
+              className="hover:text-nirvana-muted cursor-pointer transition-colors"
+            >
+              Privacy
+            </a>
+            <a
+              href="#terms"
+              onClick={(e) => {
+                e.preventDefault();
+                alert('Terms of Service:\n\nBy contacting Nirvana Interiors, you agree to our service terms. All designs and concepts remain our intellectual property until full payment is received. Project timelines and costs will be provided in detailed quotations.');
+              }}
+              className="hover:text-nirvana-muted cursor-pointer transition-colors"
+            >
+              Terms
+            </a>
           </div>
         </div>
       </div>
