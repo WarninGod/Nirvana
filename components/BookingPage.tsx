@@ -46,9 +46,9 @@ const BookingPage: React.FC<BookingPageProps> = ({ onBack }) => {
       }
 
       setIsSubmitted(true);
-    } catch (err: any) {
-      console.error('Submission error:', err);
-      setError(err.message || 'Something went wrong. Please try again or email us directly.');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Something went wrong. Please try again or email us directly.';
+      setError(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

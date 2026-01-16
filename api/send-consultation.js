@@ -23,8 +23,6 @@ export default async function handler(req, res) {
   try {
     const { name, email, type, budget, message } = req.body;
 
-    console.log('Received form submission:', { name, email, type });
-
     // Basic validation
     if (!name || !email || !message) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -32,11 +30,11 @@ export default async function handler(req, res) {
 
     // Check if API key exists
     if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY not found in environment');
+      if (process.env.NODE_ENV === 'development') {
+        console.error('RESEND_API_KEY not found in environment');
+      }
       return res.status(500).json({ error: 'Email service not configured' });
     }
-
-    console.log('Sending email with Resend...');
 
     // Send email using Resend
     const emailResponse = await resend.emails.send({
@@ -96,7 +94,9 @@ export default async function handler(req, res) {
       `,
     });
 
-    console.log('Email sent successfully:', emailResponse);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Email sent successfully:', emailResponse.id);
+    }
 
     return res.status(200).json({ 
       success: true, 
@@ -104,7 +104,9 @@ export default async function handler(req, res) {
       message: 'Consultation request sent successfully' 
     });
   } catch (error) {
-    console.error('Error sending email:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error sending email:', error);
+    }
     return res.status(500).json({ 
       error: 'Failed to send email', 
       details: error instanceof Error ? error.message : String(error)
