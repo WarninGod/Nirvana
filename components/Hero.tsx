@@ -65,7 +65,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking }) => {
         >
           <motion.div variants={itemVariants} style={{ willChange: 'transform' }} className="overflow-hidden">
              <span className="inline-block text-nirvana-gold uppercase tracking-[0.3em] text-sm font-medium">
-               Est. 2026 — Modern Living Systems
+               Est. 2018 — Modern Living Systems
              </span>
           </motion.div>
           

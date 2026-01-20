@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Box, ChefHat, Monitor, Layers } from 'lucide-react';
+import { ServiceType } from './services/serviceData';
 
 interface ServiceCardProps {
   title: string;
@@ -9,9 +10,11 @@ interface ServiceCardProps {
   features: string[];
   icon: React.ReactNode;
   delay: number;
+  serviceId: ServiceType;
+  onExplore: (serviceId: ServiceType) => void;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, description, features, icon, delay }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, description, features, icon, delay, serviceId, onExplore }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -44,7 +47,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, description, fe
           ))}
         </ul>
 
-        <button className="flex items-center gap-2 text-xs uppercase tracking-widest text-nirvana-muted group-hover:text-nirvana-gold transition-colors duration-200 mt-auto">
+        <button 
+          onClick={() => onExplore(serviceId)}
+          className="flex items-center gap-2 text-xs uppercase tracking-widest text-nirvana-muted group-hover:text-nirvana-gold transition-colors duration-200 mt-auto"
+        >
           Explore Service <ArrowRight size={14} />
         </button>
       </div>
@@ -52,7 +58,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, description, fe
   );
 };
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  onExploreService: (serviceType: ServiceType) => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ onExploreService }) => {
   const services = [
     {
       title: "Modular Culinary",
@@ -60,7 +70,8 @@ const Services: React.FC = () => {
       description: "Functional art for the heart of the home. We design intelligent, sleek modular kitchens featuring matte finishes and automated cabinetry.",
       features: ["Custom Island Designs", "Hidden Appliances", "Stone & Marble Countertops", "Smart Storage Solutions"],
       icon: <ChefHat size={24} />,
-      delay: 0
+      delay: 0,
+      serviceId: 'kitchens' as ServiceType
     },
     {
       title: "Media & Panels",
@@ -68,7 +79,8 @@ const Services: React.FC = () => {
       description: "Elevate your entertainment zone. Floating TV panels with integrated lighting, hidden wiring, and textured backdrops.",
       features: ["Floating Units", "Backlit Onyx/Stone", "Acoustic Wood Paneling", "Concealed Consoles"],
       icon: <Monitor size={24} />,
-      delay: 0.2
+      delay: 0.2,
+      serviceId: 'media-panels' as ServiceType
     },
     {
       title: "Interior Decor",
@@ -76,7 +88,8 @@ const Services: React.FC = () => {
       description: "Complete spatial transformation through architectural ceiling designs, textured feature walls, and bespoke furnishing.",
       features: ["False Ceiling Concepts", "Textured Wall Finishes", "Custom Tables & Cabinets", "Ambient Lighting"],
       icon: <Layers size={24} />,
-      delay: 0.4
+      delay: 0.4,
+      serviceId: 'interior-decor' as ServiceType
     }
   ];
 
@@ -103,13 +116,13 @@ const Services: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-nirvana-muted max-w-sm text-sm leading-relaxed"
           >
-            Established in 2026, we redefine the modern home with precision-engineered modular solutions and high-end aesthetic finishes.
+            Established in 2018, we redefine the modern home with precision-engineered modular solutions and high-end aesthetic finishes.
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((s, i) => (
-            <ServiceCard key={i} {...s} />
+            <ServiceCard key={i} {...s} onExplore={onExploreService} />
           ))}
         </div>
       </div>

@@ -54,12 +54,6 @@ const projects = [
 ];
 
 const Portfolio: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>('All');
-  
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter);
-
   return (
     <section className="py-32 px-6 md:px-12 bg-nirvana-bg">
       <div className="max-w-7xl mx-auto">
@@ -72,41 +66,53 @@ const Portfolio: React.FC = () => {
               <h2 className="font-serif text-5xl md:text-6xl text-nirvana-light mb-4">Selected Works</h2>
               <div className="h-1 w-20 bg-nirvana-gold" />
            </motion.div>
-           
-           <motion.div 
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             viewport={{ once: true }}
-             className="flex gap-8 text-sm uppercase tracking-widest text-nirvana-muted mt-6 md:mt-0"
-            >
-              <span 
-                onClick={() => setActiveFilter('All')}
-                className={`cursor-pointer transition-colors ${activeFilter === 'All' ? 'text-nirvana-light' : 'hover:text-nirvana-light'}`}
-              >
-                All
-              </span>
-              <span 
-                onClick={() => setActiveFilter('Residential')}
-                className={`cursor-pointer transition-colors ${activeFilter === 'Residential' ? 'text-nirvana-light' : 'hover:text-nirvana-light'}`}
-              >
-                Residential
-              </span>
-              <span 
-                onClick={() => setActiveFilter('Commercial')}
-                className={`cursor-pointer transition-colors ${activeFilter === 'Commercial' ? 'text-nirvana-light' : 'hover:text-nirvana-light'}`}
-              >
-                Commercial
-              </span>
-           </motion.div>
         </div>
 
-        {/* Masonry-style Grid using CSS Columns */}
-        {/* Removed space-y-8 to prevent top-misalignment in columns. Added mb-8 to items instead. */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
-          {filteredProjects.map((project, i) => (
-            <PortfolioItem key={project.id} project={project} index={i} />
-          ))}
-        </div>
+        {/* Coming Soon Overlay */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative py-32 border border-white/5 bg-nirvana-dark/50"
+        >
+          <div className="text-center">
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-nirvana-gold uppercase tracking-[0.3em] text-xs mb-6 block"
+            >
+              Portfolio
+            </motion.span>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="font-serif text-4xl md:text-5xl text-nirvana-light mb-6"
+            >
+              Coming Soon
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-nirvana-muted text-base max-w-md mx-auto mb-8"
+            >
+              We're currently curating our finest work. Check back soon to explore our completed projects.
+            </motion.p>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="h-px w-24 bg-nirvana-gold/40 mx-auto"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

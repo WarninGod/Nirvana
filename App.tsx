@@ -4,6 +4,8 @@ import Hero from './components/Hero';
 import Services from './components/Services';
 import Contact from './components/Contact';
 import BookingPage from './components/BookingPage';
+import ServicePageLayout from './components/services/ServicePageLayout';
+import { ServiceType } from './components/services/serviceData';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 
 // Lazy load heavy components for better performance
@@ -23,8 +25,10 @@ const LoadingFallback: React.FC = () => (
   </div>
 );
 
+type PageType = 'home' | 'booking' | 'service-kitchens' | 'service-media-panels' | 'service-interior-decor';
+
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'booking'>('home');
+  const [currentPage, setCurrentPage] = useState<PageType>('home');
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 200,
@@ -49,6 +53,11 @@ const App: React.FC = () => {
   const handleNavigateToHome = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     setCurrentPage('home');
+  }, []);
+
+  const handleNavigateToService = useCallback((serviceType: ServiceType) => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setCurrentPage(`service-${serviceType}` as PageType);
   }, []);
 
   return (
@@ -76,7 +85,7 @@ const App: React.FC = () => {
             </div>
             
             <div id="services">
-              <Services />
+              <Services onExploreService={handleNavigateToService} />
             </div>
             
             <Suspense fallback={<LoadingFallback />}>
@@ -95,16 +104,27 @@ const App: React.FC = () => {
               <Contact onOpenBooking={handleNavigateToBooking} />
             </div>
           </motion.div>
-        ) : (
+        ) : currentPage === 'booking' ? (
           <motion.div
             key="booking"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-             {/* We can reuse Navbar if desired, or keep BookingPage standalone. 
-                 Let's keep BookingPage standalone for a cleaner "focused" experience. */}
              <BookingPage onBack={handleNavigateToHome} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key={currentPage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <ServicePageLayout
+              serviceType={currentPage.replace('service-', '') as ServiceType}
+              onBack={handleNavigateToHome}
+              onOpenBooking={handleNavigateToBooking}
+            />
           </motion.div>
         )}
       </AnimatePresence>

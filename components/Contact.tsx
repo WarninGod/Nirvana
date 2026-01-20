@@ -157,7 +157,7 @@ const Contact: React.FC<ContactProps> = ({ onOpenBooking }) => {
 
         {/* Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-xs text-nirvana-muted/50 uppercase tracking-widest">
-          <p>© 2026 Nirvana Interiors. All rights reserved.</p>
+          <p>© 2026 Delhi 47 Traders. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a
               href="#privacy"
