@@ -11,6 +11,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 // Lazy load heavy components for better performance
 const Portfolio = lazy(() => import('./components/Portfolio'));
 const WoodSculptures = lazy(() => import('./components/WoodSculptures'));
+const Craftsmanship = lazy(() => import('./components/Craftsmanship'));
 
 // Loading fallback component
 const LoadingFallback: React.FC = () => (
@@ -87,6 +88,12 @@ const App: React.FC = () => {
             <div id="services">
               <Services onExploreService={handleNavigateToService} />
             </div>
+
+            <Suspense fallback={<LoadingFallback />}>
+              <div id="craftsmanship">
+                <Craftsmanship />
+              </div>
+            </Suspense>
             
             <Suspense fallback={<LoadingFallback />}>
               <div id="sculptures">

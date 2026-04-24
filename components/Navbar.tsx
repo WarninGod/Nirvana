@@ -10,6 +10,7 @@ interface NavbarProps {
 const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'Services', href: '#services' },
+  { name: 'Craftsmanship', href: '#craftsmanship' },
   { name: 'Joinery', href: '#sculptures' },
   { name: 'Portfolio', href: '#portfolio' },
   { name: 'Contact', href: '#contact' },
