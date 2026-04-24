@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Leaf, Landmark, Globe, Sparkles, Diamond } from 'lucide-react';
 
 const Craftsmanship: React.FC = () => {
   const containerVariants = {
@@ -34,7 +35,8 @@ const Craftsmanship: React.FC = () => {
           <motion.div variants={itemVariants} className="mb-16">
             <span className="text-nirvana-gold uppercase tracking-widest text-[10px] sm:text-xs mb-4 block flex items-center justify-center gap-2">
               <span className="w-8 h-[1px] bg-nirvana-gold/50"></span>
-              ✨ The Art of Timeless Craftsmanship
+              <Sparkles className="w-4 h-4 shrink-0" />
+              The Art of Timeless Craftsmanship
               <span className="w-8 h-[1px] bg-nirvana-gold/50"></span>
             </span>
             <p className="text-nirvana-muted text-lg md:text-xl font-light leading-relaxed">
@@ -45,9 +47,12 @@ const Craftsmanship: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left mb-16">
             {/* Commitment Section */}
-            <motion.div variants={itemVariants} className="p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
-              <h3 className="font-serif text-2xl text-nirvana-light mb-4 flex items-center gap-3">
-                <span className="text-nirvana-gold">🌿</span> A Commitment to Indian Artisans
+            <motion.div variants={itemVariants} className="p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group">
+              <div className="mb-6 text-nirvana-gold p-3 bg-nirvana-bg/50 w-fit rounded-full border border-nirvana-gold/10 group-hover:border-nirvana-gold/20 transition-colors duration-300">
+                <Leaf className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-nirvana-light mb-4">
+                A Commitment to Indian Artisans
               </h3>
               <p className="text-nirvana-muted font-light leading-relaxed">
                 Behind every creation lies the dedication of master artisans whose skills have been passed down through generations. We proudly partner with these craftsmen, bringing their authentic work across borders to global clients. We preserve their legacy while elevating it to international standards of design and quality.
@@ -55,9 +60,12 @@ const Craftsmanship: React.FC = () => {
             </motion.div>
 
             {/* Signature Collection Section */}
-            <motion.div variants={itemVariants} className="p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
-              <h3 className="font-serif text-2xl text-nirvana-light mb-4 flex items-center gap-3">
-                <span className="text-nirvana-gold">🏛️</span> Our Signature Collection
+            <motion.div variants={itemVariants} className="p-8 border border-white/10 bg-white/5 hover:bg-white/10 transition-colors group">
+              <div className="mb-6 text-nirvana-gold p-3 bg-nirvana-bg/50 w-fit rounded-full border border-nirvana-gold/10 group-hover:border-nirvana-gold/20 transition-colors duration-300">
+                <Landmark className="w-6 h-6" />
+              </div>
+              <h3 className="font-serif text-2xl text-nirvana-light mb-4">
+                Our Signature Collection
               </h3>
               <p className="text-nirvana-muted font-light leading-relaxed mb-4">
                 Our portfolio reflects elegance, exclusivity, and fine craftsmanship:
@@ -70,7 +78,7 @@ const Craftsmanship: React.FC = () => {
                   "Curated lifestyle pieces crafted for discerning clients"
                 ].map((item, idx) => (
                   <li key={idx} className="text-sm text-nirvana-muted flex items-start gap-3">
-                    <span className="text-nirvana-gold text-[10px] mt-1">◆</span>
+                    <Diamond className="text-nirvana-gold w-2.5 h-2.5 mt-1 shrink-0" strokeWidth={3} />
                     <span className="leading-snug">{item}</span>
                   </li>
                 ))}
@@ -79,9 +87,13 @@ const Craftsmanship: React.FC = () => {
           </div>
 
           {/* Worldwide Delivery Section */}
-          <motion.div variants={itemVariants} className="max-w-2xl mx-auto border-t border-b border-nirvana-gold/20 py-10 relative">
-            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 bg-nirvana-bg px-4 text-2xl">🌏</div>
-            <h3 className="font-serif text-3xl text-nirvana-light mb-6 text-center">Crafted in India. Delivered Worldwide.</h3>
+          <motion.div variants={itemVariants} className="max-w-2xl mx-auto border-t border-b border-nirvana-gold/20 py-12 relative mt-4 group">
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 bg-nirvana-bg px-6">
+              <div className="text-nirvana-gold p-3 bg-nirvana-bg/50 w-fit rounded-full border border-nirvana-gold/10 group-hover:border-nirvana-gold/20 transition-colors duration-300">
+                <Globe className="w-6 h-6" />
+              </div>
+            </div>
+            <h3 className="font-serif text-3xl text-nirvana-light mb-6 text-center mt-2">Crafted in India. Delivered Worldwide.</h3>
             <p className="text-nirvana-muted text-base md:text-lg font-light leading-relaxed text-center">
               Each creation is a harmony of tradition and modern sophistication—designed for those who appreciate rarity, detail, and true luxury. Distance is no barrier; <span className="text-nirvana-light font-medium">we deliver across borders</span>, sharing Indian artisans' work globally. With Nirvana Interiors Studio, you don’t just acquire a product—you invest in a story, a legacy, and an experience of refined living.
             </p>
